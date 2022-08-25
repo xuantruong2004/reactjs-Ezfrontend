@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  display: flex;
+  margin-left: -20px;
+  margin-top: 20px;
+}
+.album {
+  padding: 0 20px;
+  p {
+    font-weight: bold;
+  }
+}
+.img {
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
