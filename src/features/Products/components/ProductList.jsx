@@ -1,12 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import { Grid, Typography } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import PropTypes from 'prop-types';
 import Product from './Product';
+import './styles.scss';
 
 ProductList.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 function ProductList({ data = [] }) {

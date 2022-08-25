@@ -10,16 +10,6 @@ import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
 
 function App() {
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const params = {
-        _limit: 10,
-      };
-      const productList = await productApi.getAll(params);
-    };
-    fetchProduct();
-  }, []);
-
   return (
     <div className="App">
       <Header />

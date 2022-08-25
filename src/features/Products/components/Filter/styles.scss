@@ -1,0 +1,37 @@
+.category_list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.category-item {
+  padding: 5px 0;
+  transition: all 0.25;
+  :hover {
+    cursor: pointer;
+    color: #1976d2;
+  }
+}
+// .category-item + .category-item {
+//   border-top: solid 1px #ccc;
+// }
+.category-wrapper {
+  padding: 16px;
+}
+
+//
+.price-wrapper {
+  padding: 16px;
+  border-top: solid 1px #ccc;
+  .input-textFiled {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    span {
+      margin: 0 2px;
+    }
+  }
+  .filter-btn {
+    display: flex;
+    justify-content: space-between;
+  }
+}
