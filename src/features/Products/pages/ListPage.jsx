@@ -6,6 +6,7 @@ import { Container, Grid, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import './styles.scss';
 import ProductSkeletonList from '../components/ProductSkeletonList';
+import ProductList from '../components/ProductList';
 
 ListPage.propTypes = {};
 
@@ -23,24 +24,24 @@ const Root = styled(Box)((theme) => ({
     color: 'red',
   },
   [`& .${classes.right}`]: {
-    flex: '1 1 auto',
+    flex: '1 1',
   },
 }));
 
 function ListPage(props) {
   const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  const [page, limit] = [3, 10];
   useEffect(() => {
     (async () => {
       try {
-        const response = await productApi.getAll({ _page: 1, _limit: 10 });
+        const response = await productApi.getAll({ _page: page, _limit: limit });
         setProductList(response.data);
       } catch (error) {
         console.log('Failed to fetch Product List ', error);
       }
 
-      // setLoading(false)
+      setLoading(false);
     })();
   }, []);
   return (
@@ -52,7 +53,11 @@ function ListPage(props) {
           </Grid>
           <Grid item className={classes.right}>
             <Paper elevation={0}>
-              {loading ? <ProductSkeletonList /> : <Typography>ProductList</Typography>}
+              {loading ? (
+                <ProductSkeletonList length={limit} />
+              ) : (
+                <ProductList data={productList} />
+              )}
             </Paper>
           </Grid>
         </Grid>
