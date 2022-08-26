@@ -13,42 +13,44 @@ function Product({ product }) {
     ? `${STATIC_HOST}${product.thumbnail.url}`
     : THUMBNAIL_PLACEHOLDER;
   return (
-    <Box padding={2}>
-      <Box minHeight="215px">
-        <img
-          style={{
-            borderRadius: '10px',
-          }}
-          src={thumbnailUrl}
-          alt={product.name}
-          width="100%"
-        />
-      </Box>
-      <Typography variant="body2">{product.name}</Typography>
-      <Typography variant="body2">
-        <Box component="span" fontSize="16px" fontWeight="bold" color="red">
-          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-            product.salePrice
-          )}
-        </Box>
-        {product.promotionPercent > 0 ? (
-          <Box
-            component="span"
+    <Box className="productItem">
+      <Box className="none-hover" padding={2}>
+        <Box minHeight="215px">
+          <img
             style={{
-              marginLeft: '10px',
-              padding: '0 2px',
-              fontSize: '12px',
-              color: 'red',
-              border: 'solid 1px red',
-              backgroundColor: '#fff0f1',
+              borderRadius: '10px',
             }}
-          >
-            -{product.promotionPercent}%
+            src={thumbnailUrl}
+            alt={product.name}
+            width="100%"
+          />
+        </Box>
+        <Typography variant="body2">{product.name}</Typography>
+        <Typography variant="body2">
+          <Box component="span" fontSize="16px" fontWeight="bold" color="red">
+            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+              product.salePrice
+            )}
           </Box>
-        ) : (
-          ''
-        )}
-      </Typography>
+          {product.promotionPercent > 0 ? (
+            <Box
+              component="span"
+              style={{
+                marginLeft: '10px',
+                padding: '0 2px',
+                fontSize: '12px',
+                color: 'red',
+                border: 'solid 1px red',
+                backgroundColor: '#fff0f1',
+              }}
+            >
+              -{product.promotionPercent}%
+            </Box>
+          ) : (
+            ''
+          )}
+        </Typography>
+      </Box>
     </Box>
   );
 }

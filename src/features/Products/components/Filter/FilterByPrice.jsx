@@ -22,9 +22,12 @@ function FilterByPrice({ onChange }) {
     if (onChange) onChange(values);
   };
   const handleReset = () => {
-    setValues({
-      salePrice_lte: 0,
-      salePrice_gte: 0,
+    setValues((prev) => {
+      const newValues = { ...prev };
+      delete newValues.salePrice_gte;
+      delete newValues.salePrice_lte;
+      if (onChange) onChange(newValues);
+      return newValues;
     });
   };
   return (
@@ -34,14 +37,14 @@ function FilterByPrice({ onChange }) {
         <TextField
           size="small"
           name="salePrice_gte"
-          value={values.salePrice_gte}
+          value={values.salePrice_gte || 0}
           onChange={handleChange}
         />
         <span>-</span>
         <TextField
           size="small"
           name="salePrice_lte"
-          value={values.salePrice_lte}
+          value={values.salePrice_lte || 0}
           onChange={handleChange}
         />
       </Box>

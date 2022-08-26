@@ -1,6 +1,12 @@
 .productItem {
+  transition: all 2;
   :hover {
     cursor: pointer;
     box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+  }
+}
+.none-hover {
+  :hover {
+    box-shadow: none;
   }
 }
