@@ -7,7 +7,6 @@ import './styles.scss';
 ProductList.propTypes = {
   data: PropTypes.array,
 };
-
 function ProductList({ data = [] }) {
   return (
     <Box>

@@ -23,7 +23,7 @@ const classes = {
   paper: `${PREFIX}-paper`,
   pagination: `${PREFIX}-pagination`,
 };
-const Root = styled(Box)((theme) => ({
+const Root = styled(Box)(({ theme }) => ({
   [`&.${classes.root}`]: {},
   [`& .${classes.left}`]: {
     width: '248px',

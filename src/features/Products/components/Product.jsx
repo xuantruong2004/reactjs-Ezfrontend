@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import './styles.scss';
 
 Product.propTypes = {
@@ -9,11 +10,16 @@ Product.propTypes = {
 };
 
 function Product({ product }) {
+  const history = useHistory();
   const thumbnailUrl = product.thumbnail
     ? `${STATIC_HOST}${product.thumbnail.url}`
     : THUMBNAIL_PLACEHOLDER;
+
+  const handleClick = () => {
+    history.push(`/products/${product.id}`);
+  };
   return (
-    <Box className="productItem">
+    <Box className="productItem" onClick={handleClick}>
       <Box className="none-hover" padding={2}>
         <Box minHeight="215px">
           <img
