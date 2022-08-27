@@ -37,6 +37,7 @@ const Root = styled(Box)(({ theme }) => ({
     backgroundColor: '#ff3d00',
     padding: theme.spacing(2),
     color: 'white',
+    borderRadius: '5px',
   },
 
   [`& .${classes.salePrice}`]: {

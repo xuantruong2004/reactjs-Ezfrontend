@@ -1,4 +1,6 @@
-import { Box, Container, Grid, Paper, Skeleton, styled } from '@mui/material';
+import { Box, Container, Grid, LinearProgress, Paper, styled } from '@mui/material';
+import { addToCart } from 'features/Cart/cartSlice';
+import { useDispatch } from 'react-redux';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import AddToCartForm from '../components/AddToCartForm';
 import ProductAddition from '../components/ProductAddition';
@@ -14,6 +16,7 @@ DetailPage.propTypes = {};
 const PREFIX = 'DetailPage';
 const classes = {
   root: `${PREFIX}-root`,
+  loading: `${PREFIX}-loading`,
   left: `${PREFIX}-left`,
   right: `${PREFIX}-right`,
   paper: `${PREFIX}-paper`,
@@ -21,6 +24,12 @@ const classes = {
 };
 const Root = styled(Box)(({ theme }) => ({
   [`&.${classes.root}`]: {},
+  [`&.${classes.loading}`]: {
+    position: 'fixed',
+    width: '100%',
+    top: '64px',
+    left: 0,
+  },
   [`& .${classes.left}`]: {
     width: '400px',
     padding: theme.spacing(1.5),
@@ -37,26 +46,21 @@ function DetailPage(props) {
     url,
     params: { productId },
   } = useRouteMatch();
-
+  const dispatch = useDispatch();
   const { product, loading } = useDetailProduct(productId);
   const handleAddCartForm = (formValues) => {
-    console.log('form value', formValues);
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity: formValues.quantity,
+    });
+    console.log('action', action);
+    dispatch(action);
   };
   if (loading) {
     return (
-      <Root className={classes.root}>
-        <Container>
-          <Paper elevation={0}>
-            <Grid container>
-              <Grid item className={classes.left}>
-                <Skeleton variant="rectangular" width="100%" height={400} />
-              </Grid>
-              <Grid item className={classes.right}>
-                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width="100%" />
-              </Grid>
-            </Grid>
-          </Paper>
-        </Container>
+      <Root className={classes.loading}>
+        <LinearProgress color="success"></LinearProgress>
       </Root>
     );
   }

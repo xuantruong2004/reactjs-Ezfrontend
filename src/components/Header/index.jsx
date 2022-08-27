@@ -5,11 +5,11 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import './styles.scss';
 
 import { AccountCircle, Close } from '@mui/icons-material';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { Badge, IconButton, Menu, MenuItem } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Login from 'features/Auth/components/Login';
@@ -17,6 +17,8 @@ import Register from 'features/Auth/components/Register';
 import { logout } from 'features/Auth/userSlice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { cartItemsCountSelector } from 'features/Cart/selector';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -26,7 +28,9 @@ export default function Header() {
   const openMenu = Boolean(anchorEl);
   const loggedInUser = useSelector((state) => state.user.current);
   const isLoggedIn = !!loggedInUser.id;
-  // const [login, setLogin] = useState(isLoggedIn);
+  const history = useHistory();
+
+  const cartItemCount = useSelector(cartItemsCountSelector);
   const MODE = {
     REGISTER: 'register',
     LOGIN: 'login',
@@ -65,6 +69,10 @@ export default function Header() {
     dispatch(action);
   };
 
+  const handleClickCart = () => {
+    history.push('/cart');
+  };
+
   const IconStyled = styled(CodeIcon)({
     marginRight: 10,
   });
@@ -93,7 +101,7 @@ export default function Header() {
         <Toolbar>
           <IconStyled />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link className="nav-link" to={'/'}>
+            <Link className="nav-link" to={'/products'}>
               SSL school
             </Link>
           </Typography>
@@ -113,6 +121,16 @@ export default function Header() {
               <AccountCircle />
             </IconButton>
           )}
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+            onClick={handleClickCart}
+          >
+            <Badge badgeContent={cartItemCount} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
 

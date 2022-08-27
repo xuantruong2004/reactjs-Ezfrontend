@@ -1,4 +1,5 @@
 import Header from 'components/Header';
+import CartFeature from 'features/Cart';
 import ProductFeature from 'features/Products';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
           <Route path={'/todo'} component={TodoFeature} />
           <Route path={'/album'} component={AlbumFeature} />
           <Route path={'/products'} component={ProductFeature} />
+          <Route path={'/cart'} component={CartFeature} />
           <Route component={NotFound} />
         </Switch>
       </div>
