@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Box, Container, Grid, Paper, Skeleton, styled } from '@mui/material';
-import ProductThumbnail from '../components/ProductThumbnail';
-import queryString from 'query-string';
-import { useHistory, useRouteMatch } from 'react-router-dom';
-import productApi from 'api/productApi';
-import useDetailProduct from '../hooks/useDetailProduct';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import AddToCartForm from '../components/AddToCartForm';
+import ProductAddition from '../components/ProductAddition';
+import ProductDescription from '../components/ProductDescription';
 import ProductInfo from '../components/ProductInfo';
+import ProductMenu from '../components/ProductMenu';
+import ProductReview from '../components/ProductReview';
+import ProductThumbnail from '../components/ProductThumbnail';
+import useDetailProduct from '../hooks/useDetailProduct';
 
 DetailPage.propTypes = {};
 
@@ -27,16 +28,20 @@ const Root = styled(Box)(({ theme }) => ({
   },
   [`& .${classes.right}`]: {
     flex: '1 1',
+    padding: theme.spacing(2),
   },
   [`& .${classes.pagination}`]: {},
 }));
 function DetailPage(props) {
   const {
+    url,
     params: { productId },
   } = useRouteMatch();
-  console.log('match: ', productId);
 
   const { product, loading } = useDetailProduct(productId);
+  const handleAddCartForm = (formValues) => {
+    console.log('form value', formValues);
+  };
   if (loading) {
     return (
       <Root className={classes.root}>
@@ -65,9 +70,22 @@ function DetailPage(props) {
             </Grid>
             <Grid item className={classes.right}>
               <ProductInfo product={product} />
+              <AddToCartForm onSubmit={handleAddCartForm} />
             </Grid>
           </Grid>
         </Paper>
+        <ProductMenu />
+        <Switch>
+          <Route path={url} exact>
+            <ProductDescription product={product} />
+          </Route>
+          <Route path={`${url}/additional`} exact>
+            <ProductAddition product={product} />
+          </Route>
+          <Route path={`${url}/reviews`} exact>
+            <ProductReview product={product} />
+          </Route>
+        </Switch>
       </Container>
     </Root>
   );

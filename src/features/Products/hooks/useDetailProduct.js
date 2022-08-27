@@ -7,7 +7,6 @@ const useDetailProduct = (productId) => {
   useEffect(() => {
     (async () => {
       try {
-        console.log('[loading]', loading);
         const response = await productApi.get(productId);
         setProduct(response);
       } catch (error) {

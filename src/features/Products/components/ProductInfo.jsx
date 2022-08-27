@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, styled, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 import { FormatPrice } from 'utils';
 
 ProductInfo.propTypes = {
@@ -20,7 +19,8 @@ const classes = {
 };
 const Root = styled(Box)(({ theme }) => ({
   [`&.${classes.root}`]: {
-    padding: theme.spacing(2),
+    paddingBottom: theme.spacing(3),
+    borderBottom: `solid 1px ${theme.palette.grey[300]}`,
   },
 
   [`& .${classes.name}`]: {
@@ -50,22 +50,18 @@ const Root = styled(Box)(({ theme }) => ({
 
   [`& .${classes.originalPrice}`]: {
     opacity: ' 0.6',
-    position: 'relative',
+    textDecoration: 'line-through',
     marginRight: theme.spacing(2),
-    '::before': {
-      content: "''",
-      position: 'absolute',
-      width: '100%',
-      height: '1px',
-      backgroundColor: 'white',
-      top: '50%',
-    },
   },
-  [`& .${classes.promotionPercent}`]: {},
+  [`& .${classes.promotionPercent}`]: {
+    padding: theme.spacing(0, 0.5),
+    border: 'solid 1px white',
+    borderRadius: '5px',
+  },
 }));
 
 function ProductInfo({ product }) {
-  const { name, originalPrice, productId, promotionPercent, salePrice, shortDescription } = product;
+  const { name, originalPrice, promotionPercent, salePrice, shortDescription } = product;
 
   return (
     <Root className={classes.root}>
@@ -79,12 +75,16 @@ function ProductInfo({ product }) {
         <Box className={classes.salePrice} component="span" variant="h3">
           {FormatPrice(salePrice)}
         </Box>
-        <Box className={classes.boxSale}>
-          <Box className={classes.originalPrice} component="span">
-            {FormatPrice(originalPrice)}
+        {promotionPercent > 0 && (
+          <Box className={classes.boxSale}>
+            <Box className={classes.originalPrice} component="span">
+              {FormatPrice(originalPrice)}
+            </Box>
+            <Box className={classes.promotionPercent} component="span">
+              -{promotionPercent}%
+            </Box>
           </Box>
-          <Box component="span">-{promotionPercent}%</Box>
-        </Box>
+        )}
       </Box>
     </Root>
   );

@@ -1,19 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
-import productApi from 'api/productApi';
-import { Box } from '@mui/system';
-import { Container, Grid, Pagination, Paper, Typography } from '@mui/material';
+import { Container, Grid, Pagination, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import './styles.scss';
-import ProductSkeletonList from '../components/ProductSkeletonList';
-import ProductList from '../components/ProductList';
-import ProductSort from '../components/ProductSort';
-import ProductListFilter from '../components/ProductListFilter';
-import FilterViewer from '../components/Filter/FilterViewer';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Box } from '@mui/system';
+import productApi from 'api/productApi';
 import queryString from 'query-string';
-
-ListPage.propTypes = {};
+import { useEffect, useMemo, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import FilterViewer from '../components/Filter/FilterViewer';
+import ProductList from '../components/ProductList';
+import ProductListFilter from '../components/ProductListFilter';
+import ProductSkeletonList from '../components/ProductSkeletonList';
+import ProductSort from '../components/ProductSort';
+import './styles.scss';
 
 const PREFIX = 'ListPage';
 const classes = {

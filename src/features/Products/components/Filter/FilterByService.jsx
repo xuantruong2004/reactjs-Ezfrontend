@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Box, Typography } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 FilterByService.propTypes = {

@@ -14,9 +14,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
+import { logout } from 'features/Auth/userSlice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'features/Auth/userSlice';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function Header() {
   const openMenu = Boolean(anchorEl);
   const loggedInUser = useSelector((state) => state.user.current);
   const isLoggedIn = !!loggedInUser.id;
-  const [login, setLogin] = useState(isLoggedIn);
+  // const [login, setLogin] = useState(isLoggedIn);
   const MODE = {
     REGISTER: 'register',
     LOGIN: 'login',

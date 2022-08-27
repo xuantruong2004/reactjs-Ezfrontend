@@ -1,8 +1,6 @@
-import React from 'react';
+import { Box } from '@mui/material';
+import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants';
 import PropTypes from 'prop-types';
-import { Box, Skeleton } from '@mui/material';
-import { STATIC_HOST } from 'constants';
-import { THUMBNAIL_PLACEHOLDER } from 'constants';
 
 ProductThumbnail.propTypes = {
   product: PropTypes.object,

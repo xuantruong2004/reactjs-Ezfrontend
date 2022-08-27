@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Chip } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Button, Chip, TextField, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 
 FilterViewer.propTypes = {
   onChange: PropTypes.func,
