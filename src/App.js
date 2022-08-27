@@ -10,16 +10,20 @@ import TodoFeature from './features/Todo';
 function App() {
   return (
     <div className="App">
-      <Header />
+      <div className="header">
+        <Header />
+      </div>
 
-      <Switch>
-        <Route path={'/counter'} component={CounterFeature} exact />
-        <Route path={'/'} component={CounterFeature} exact />
-        <Route path={'/todo'} component={TodoFeature} />
-        <Route path={'/album'} component={AlbumFeature} />
-        <Route path={'/products'} component={ProductFeature} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path={'/counter'} component={CounterFeature} exact />
+          <Route path={'/'} component={CounterFeature} exact />
+          <Route path={'/todo'} component={TodoFeature} />
+          <Route path={'/album'} component={AlbumFeature} />
+          <Route path={'/products'} component={ProductFeature} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </div>
   );
 }

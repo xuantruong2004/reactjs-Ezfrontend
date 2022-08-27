@@ -66,8 +66,6 @@ function LoginForm({ onSubmit }) {
 
   const { isSubmitting } = form.formState;
   const handleTodoSubmit = async (values) => {
-    console.log('form submit ', values);
-
     if (onSubmit) {
       await onSubmit(values);
     }
