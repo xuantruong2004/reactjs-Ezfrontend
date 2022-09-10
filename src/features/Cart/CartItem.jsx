@@ -25,12 +25,11 @@ const Root = styled(Box)(({ theme }) => ({
   [`& .${classes.img}`]: {
     width: '160px',
     height: '160px',
-    backgroundColor: 'red',
   },
 }));
 
 function CartItem({ product, quantity, index }) {
-  const url = `${STATIC_HOST}${product.thumbnail.url}`;
+  const url = `${STATIC_HOST}${product.thumbnail.url}` || undefined;
   return (
     <Root className={classes.root}>
       <Typography>{index + 1}</Typography>
